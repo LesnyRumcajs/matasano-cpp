@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+# Runner files
+runner.cpp
+runner
+
+# Sublime
+*.sublime*
