@@ -13,6 +13,5 @@ class Challenge1_test : public CxxTest::TestSuite {
         const std::string EXPECTED_RESULT = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t";
         auto result = challenge1::hex2base64(TEST_CASE);
         TS_ASSERT_EQUALS(EXPECTED_RESULT, result);
-        TS_ASSERT(2+2 == 4);
     }
 };
