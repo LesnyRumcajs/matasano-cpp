@@ -34,3 +34,9 @@ runner
 
 # Sublime
 *.sublime*
+
+# build directory
+build
+
+# vs code
+.vscode
