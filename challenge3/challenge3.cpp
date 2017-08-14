@@ -27,12 +27,10 @@ challenge3::SingleXorBreak::getAllResults() const {
 
 std::string challenge3::SingleXorBreak::getBestResult() const {
   auto results = getAllResults();
-  auto bestResult =
-      std::max_element(results.begin(), results.end(),
-                       [](const std::pair<std::string, int> &left,
-                          const std::pair<std::string, int> &right) {
-                         return left.second < right.second;
-                       });
+  auto bestResult = std::max_element(results.begin(), results.end(),
+                                     [](const auto &left, const auto &right) {
+                                       return left.second < right.second;
+                                     });
 
   return bestResult->first;
 }
