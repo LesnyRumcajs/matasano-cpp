@@ -1,5 +1,5 @@
-#ifndef CHALLENGE_1_CHALLENGE3_H_
-#define CHALLENGE_1_CHALLENGE3_H_
+#ifndef CHALLENGE_3_CHALLENGE3_H_
+#define CHALLENGE_3_CHALLENGE3_H_
 
 #include <map>
 #include <string>
