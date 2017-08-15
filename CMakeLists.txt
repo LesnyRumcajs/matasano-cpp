@@ -41,15 +41,23 @@ add_executable(runChallenge5Test challenge5/challenge5_test.cpp
                                  challenge5/challenge5.cpp
                                  )
 
+add_executable(runChallenge6Test challenge6/challenge6_test.cpp
+                                 challenge6/challenge6.cpp
+                                 )
+
+
+
 set(LIBS gtest gtest_main ${CMAKE_THREAD_LIBS_INIT} libbotan-2.a)
 target_link_libraries(runChallenge1Test ${LIBS})
 target_link_libraries(runChallenge2Test ${LIBS})                   
 target_link_libraries(runChallenge3Test ${LIBS})
 target_link_libraries(runChallenge4Test ${LIBS})                   
 target_link_libraries(runChallenge5Test ${LIBS})                   
+target_link_libraries(runChallenge6Test ${LIBS})                   
 
 add_test( runChallenge1Test runChallenge1Test )
 add_test( runChallenge2Test runChallenge2Test )
 add_test( runChallenge3Test runChallenge3Test )
 add_test( runChallenge4Test runChallenge4Test )
 add_test( runChallenge5Test runChallenge5Test )
+add_test( runChallenge6Test runChallenge6Test )

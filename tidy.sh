@@ -5,4 +5,5 @@ clang-tidy -p build/compile_commands.json \
     challenge3/*.cpp \
     challenge4/*.cpp \
     challenge5/*.cpp \
+    challenge6/*.cpp \
     -checks=-*,modernize-*,clang-analyzer-*,performance-*,readibility-*,misc-*,llvm-*,google-*,cert-*,bugprone-*
