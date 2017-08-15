@@ -8,10 +8,10 @@
 
 namespace challenge6 {
 template <class T> int hammingDistance(T s1, T s2) {
-  if (s1.length() != s2.length())
+  if (s1.size() != s2.size())
     return -1;
 
-  std::vector<int> results(s1.length());
+  std::vector<int> results(s1.size());
   std::transform(s1.begin(), s1.end(), s2.begin(), results.begin(),
                  [](auto e1, auto e2) {
                    auto distance{0};
