@@ -15,11 +15,11 @@ template <class T> int hammingDistance(T s1, T s2) {
   std::transform(s1.begin(), s1.end(), s2.begin(), results.begin(),
                  [](auto e1, auto e2) {
                    auto distance{0};
-                   
-                   //number with differing bits
+
+                   // number with differing bits
                    auto val = e1 ^ e2;
-                   
-                   //using Brian Kernighan algorithm to count bits
+
+                   // using Brian Kernighan algorithm to count bits
                    while (val) {
                      ++distance;
                      val &= val - 1;
@@ -29,6 +29,16 @@ template <class T> int hammingDistance(T s1, T s2) {
 
   return std::accumulate(results.begin(), results.end(), 0);
 }
-}
 
+class RepeatingKeyXorBreaker {
+public:
+  RepeatingKeyXorBreaker(std::string filename);
+  int decipher() const;
+
+private:
+  const std::vector<uint8_t> _DATA;
+  static std::vector<uint8_t>
+  getBytesFromBase64EncodedFile(std::string filename);
+};
+}
 #endif
