@@ -39,6 +39,8 @@ private:
   const std::vector<uint8_t> _DATA;
   static std::vector<uint8_t>
   getBytesFromBase64EncodedFile(std::string filename);
+
+  std::vector<int> getCandidateKeySizes() const;
 };
 }
 #endif
