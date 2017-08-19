@@ -13,10 +13,10 @@ TEST(Challenge3Test, BasicTest) {
 
   challenge3::SingleXorBreak test(
       "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a39"
-                "3b3736",
+      "3b3736",
       std::move(scoreMap));
 
-  auto result{test.getBestResult()};
+  auto result{test.getBestResult().plaintext};
   auto expected{"Cooking MC's like a pound of bacon"};
 
   EXPECT_EQ(expected, result);

@@ -5,7 +5,7 @@
 
 #include "./challenge5.h"
 
-TEST(Challenge4Test, BasicTest) {
+TEST(Challenge5Test, BasicTest) {
   auto plaintext = "Burning 'em, if you ain't"
                    " quick and nimble\nI go crazy"
                    " when I hear a cymbal";
@@ -17,4 +17,23 @@ TEST(Challenge4Test, BasicTest) {
 
   auto resultCiphertext = challenge5::RepeatingKeyXor().encrypt(plaintext, key);
   EXPECT_EQ(expectedCiphertext, resultCiphertext);
+}
+
+#include <botan/hex.h>
+
+TEST(Challenge5Test, EncryptDecrypt) {
+  std::string plaintext = "Burning 'em, if you ain't"
+                          " quick and nimble\nI go crazy"
+                          " when I hear a cymbal";
+
+  auto key = "ICE";
+
+  auto resultCiphertext =
+      Botan::hex_decode(challenge5::RepeatingKeyXor().encrypt(plaintext, key));
+  auto resultPlaintext = challenge5::RepeatingKeyXor().decrypt(
+      {resultCiphertext.begin(), resultCiphertext.end()}, key);
+
+  std::vector<uint8_t> plaintextVec(plaintext.begin(), plaintext.end());
+  EXPECT_EQ(plaintextVec, resultPlaintext);
+  // EXPECT_THAT(plaintext, testing::ContainerEq(resultPlaintext));
 }

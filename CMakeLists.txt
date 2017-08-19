@@ -43,6 +43,9 @@ add_executable(runChallenge5Test challenge5/challenge5_test.cpp
 
 add_executable(runChallenge6Test challenge6/challenge6_test.cpp
                                  challenge6/challenge6.cpp
+                                 challenge5/challenge5.cpp
+                                 challenge3/challenge3.cpp
+                                 challenge2/challenge2.cpp
                                  )
 
 

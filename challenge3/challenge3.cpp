@@ -7,32 +7,35 @@ challenge3::SingleXorBreak::SingleXorBreak(const std::string ciphertext,
                                            const ScoreMap scoreMap)
     : _CIPHERTEXT(ciphertext), _SCORE_MAP(scoreMap) {}
 
-std::vector<std::pair<std::string, int>>
+std::vector<challenge3::SingleXorBreak::ResultData>
 challenge3::SingleXorBreak::getAllResults() const {
   auto candidateKeys = generateCandidateKeys();
 
-  std::vector<std::pair<std::string, int>> results;
-  for (const auto &key : candidateKeys) {
+  std::vector<ResultData> results;
+  for (auto key : candidateKeys) {
     auto candidateBytes =
         Botan::hex_decode(challenge2::fixed_xor(_CIPHERTEXT, key));
     auto candidatePlaintext =
         std::string(candidateBytes.begin(), candidateBytes.end());
 
-    results.emplace_back(std::make_pair(candidatePlaintext,
-                                        getCandidateScore(candidatePlaintext)));
+    auto byteKey = Botan::hex_decode(key);
+    results.emplace_back(ResultData(candidatePlaintext,
+                                    getCandidateScore(candidatePlaintext),
+                                    byteKey.at(0)));
   }
 
   return results;
 }
 
-std::string challenge3::SingleXorBreak::getBestResult() const {
+challenge3::SingleXorBreak::ResultData
+challenge3::SingleXorBreak::getBestResult() const {
   auto results = getAllResults();
   auto bestResult = std::max_element(results.begin(), results.end(),
                                      [](const auto &left, const auto &right) {
-                                       return left.second < right.second;
+                                       return left.score < right.score;
                                      });
 
-  return bestResult->first;
+  return *bestResult;
 }
 
 std::vector<std::string>
@@ -58,7 +61,11 @@ int challenge3::SingleXorBreak::getCandidateScore(
 
 int challenge3::SingleXorBreak::getCharacterScore(char c) const {
   auto it = _SCORE_MAP.find(c);
-  return it == _SCORE_MAP.end() ? 0 : it->second;
+  if (it == _SCORE_MAP.end()) {
+    return (c > 65 && c < 122) ? 0 : -500;
+  }
+
+  return it->second;
 }
 
 std::string

@@ -6,14 +6,23 @@
 #include <vector>
 
 namespace challenge3 {
+
 class SingleXorBreak {
 public:
+  struct ResultData {
+    std::string plaintext;
+    int score;
+    uint8_t key;
+
+    ResultData(std::string plaintext, int score, uint8_t key)
+        : plaintext(plaintext), score(score), key(key) {}
+  };
   typedef std::map<char, int> ScoreMap;
 
   SingleXorBreak(const std::string ciphertext, const ScoreMap scoreMap);
 
-  std::vector<std::pair<std::string, int>> getAllResults() const;
-  std::string getBestResult() const;
+  std::vector<ResultData> getAllResults() const;
+  ResultData getBestResult() const;
 
 private:
   const std::string _CIPHERTEXT;

@@ -2,6 +2,7 @@
 #define CHALLENGE6_CHALLENGE6_H
 
 #include <algorithm>
+#include <map>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -33,14 +34,19 @@ template <class T> int hammingDistance(T s1, T s2) {
 class RepeatingKeyXorBreaker {
 public:
   RepeatingKeyXorBreaker(std::string filename);
-  int decipher() const;
+  std::vector<uint8_t> decipher() const;
 
 private:
   const std::vector<uint8_t> _DATA;
   static std::vector<uint8_t>
   getBytesFromBase64EncodedFile(std::string filename);
-
   std::vector<int> getCandidateKeySizes() const;
+  std::vector<std::vector<uint8_t>> getDataInBlocks(int block_size) const;
+  double evaluate_plaintext(std::vector<uint8_t> plaintext,
+                            std::map<char, int> scoreMap) const;
+  std::vector<std::vector<uint8_t>>
+  getCandidateKeys(std::map<char, int> scoreMap) const;
 };
 }
+
 #endif

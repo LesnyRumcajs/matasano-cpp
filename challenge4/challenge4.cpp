@@ -16,7 +16,7 @@ std::string challenge4::SingleXorDetector::detect() const {
       {'s', 7},  {'h', 7},  {'r', 6}, {'d', 6}, {'l', 5}, {'u', 5},
   };
 
-  std::vector<std::pair<std::string, int>> allResults;
+  std::vector<challenge3::SingleXorBreak::ResultData> allResults;
   for (const auto &data : _DATA) {
     auto candidates =
         challenge3::SingleXorBreak(data, SCORE_MAP).getAllResults();
@@ -25,10 +25,10 @@ std::string challenge4::SingleXorDetector::detect() const {
 
   auto bestResult = std::max_element(allResults.begin(), allResults.end(),
                                      [](const auto &left, const auto &right) {
-                                       return left.second < right.second;
+                                       return left.score < right.score;
                                      });
 
-  return bestResult->first;
+  return bestResult->plaintext;
 }
 
 std::vector<std::string>
