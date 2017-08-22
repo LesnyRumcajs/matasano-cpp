@@ -7,7 +7,7 @@
 namespace challenge8 {
 class AES_ECB_Detector {
 public:
-  typedef std::vector<std::vector<uint8_t>> ECB_Candidates;
+  using  ECB_Candidates = std::vector<std::vector<uint8_t>>;
   int detect(const ECB_Candidates &data) const;
 
 private:
