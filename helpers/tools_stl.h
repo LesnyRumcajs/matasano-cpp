@@ -2,12 +2,13 @@
 #define HELPERS_TOOLS_STL_H
 
 #include <iterator>
+#include <vector>
 
 namespace tools_stl {
 template <typename Iterator, typename Func>
 void chunks(
     Iterator begin, Iterator end,
-    std::iterator_traits<std::string::iterator>::difference_type chunk_size,
+    std::iterator_traits<std::vector<uint8_t>::iterator>::difference_type chunk_size,
     Func function) {
   Iterator chunk_begin;
   Iterator chunk_end;
