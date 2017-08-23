@@ -58,6 +58,10 @@ add_executable(runChallenge8Test challenge8/challenge8_test.cpp
                                  helpers/tools_file.cpp
                                  )
 
+add_executable(runChallenge9Test challenge9/challenge9_test.cpp
+                                 challenge9/challenge9.cpp
+                                 )
+
 set(LIBS gtest gtest_main ${CMAKE_THREAD_LIBS_INIT} libbotan-2.a)
 target_link_libraries(runChallenge1Test ${LIBS})
 target_link_libraries(runChallenge2Test ${LIBS})                   
@@ -67,6 +71,8 @@ target_link_libraries(runChallenge5Test ${LIBS})
 target_link_libraries(runChallenge6Test ${LIBS})                   
 target_link_libraries(runChallenge7Test ${LIBS})
 target_link_libraries(runChallenge8Test ${LIBS})
+target_link_libraries(runChallenge9Test ${LIBS})
+
 
 add_test( runChallenge1Test runChallenge1Test )
 add_test( runChallenge2Test runChallenge2Test )
@@ -76,3 +82,4 @@ add_test( runChallenge5Test runChallenge5Test )
 add_test( runChallenge6Test runChallenge6Test )
 add_test( runChallenge7Test runChallenge7Test )
 add_test( runChallenge8Test runChallenge8Test )
+add_test( runChallenge9Test runChallenge9Test )
